@@ -1,0 +1,6 @@
+{
+  "name": "Md. Taskin Ahmed Supporter Hub",
+  "description": "Md. Taskin Ahmed's premium personal website and Brazil Football Supporter hub.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

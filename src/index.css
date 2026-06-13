@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-brazil-green: #00933b;
+  --color-brazil-yellow: #fcd116;
+  --color-brazil-blue: #002776;
+  --color-brazil-dark: #05160b;
+}
+
+/* Base resets & custom scrollbar */
+html {
+  scroll-behavior: smooth;
+  cursor: default;
+}
+
+body {
+  background-color: var(--color-brazil-dark);
+  color: #f3f4f6;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-brazil-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #113c1c;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brazil-green);
+}
+
+/* Custom glow animations */
+@keyframes stadiumGlow {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.05);
+  }
+}
+
+.animate-stadium-glow {
+  animation: stadiumGlow 8s ease-in-out infinite;
+}
+
+/* Floating custom cursor styling */
+.custom-cursor {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--color-brazil-yellow);
+  background-color: rgba(0, 147, 59, 0.3);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.custom-cursor-hover {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(252, 209, 22, 0.5);
+  border-color: #ffffff;
+}
