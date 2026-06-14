@@ -513,9 +513,9 @@ export default function App() {
                 transition={{ delay: 0.2, duration: 0.8 }}
                 className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mt-3 text-lg md:text-xl font-medium text-emerald-300"
               >
-                <span className="flex items-center gap-1.5">Computer Science & Technology <Star size={12} className="text-[#FEDD00] fill-[#FEDD00]" /></span>
+                <span className="flex items-center gap-1.5">Brazil Football Supporter <Star size={12} className="text-[#FEDD00] fill-[#FEDD00]" /></span>
                 <span className="hidden md:inline text-[#FEDD00]">•</span>
-                <span className="text-[#FEDD00]">Tech Enthusiast</span>
+                <span className="text-[#FEDD00]">Football Enthusiast</span>
               </motion.div>
             </div>
 

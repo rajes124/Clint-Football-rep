@@ -229,7 +229,7 @@ export default function App() {
   function StatCounter({ endValue, title, icon: Icon, delay = 0.1 }: { endValue: number; title: string; icon: any; delay?: number }) {
     const [count, setCount] = useState(0);
     const ref = useRef<HTMLDivElement | null>(null);
-    const hasAnimated = useRef(false); 
+    const hasAnimated = useRef(false); // ইন্টারসেকশন এবং হোভার ট্রিগার লকিং ফ্ল্যাগ
 
     useEffect(() => {
       const observer = new IntersectionObserver(
@@ -245,7 +245,7 @@ export default function App() {
               const progress = timestamp - startTime;
               const progressRatio = Math.min(progress / duration, 1);
               
-              // Smooth Ease-out গাণিতিক ম্যাপিং 
+              // Smooth Ease-out গাণিতিক ম্যাপিং (যাতে শেষে এসে গতি কমে এবং নিখুঁত দেখায়)
               const easeOutQuad = progressRatio * (2 - progressRatio);
               const currentCount = Math.floor(easeOutQuad * endValue);
               
@@ -513,9 +513,9 @@ export default function App() {
                 transition={{ delay: 0.2, duration: 0.8 }}
                 className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mt-3 text-lg md:text-xl font-medium text-emerald-300"
               >
-                <span className="flex items-center gap-1.5">Computer Science & Technology <Star size={12} className="text-[#FEDD00] fill-[#FEDD00]" /></span>
+                <span className="flex items-center gap-1.5">Brazil Football Supporter <Star size={12} className="text-[#FEDD00] fill-[#FEDD00]" /></span>
                 <span className="hidden md:inline text-[#FEDD00]">•</span>
-                <span className="text-[#FEDD00]">Tech Enthusiast</span>
+                <span className="text-[#FEDD00]">Football Enthusiast</span>
               </motion.div>
             </div>
 
@@ -1729,7 +1729,7 @@ export default function App() {
               Contact Messenger Hub
             </span>
             <h3 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-white capitalize">
-              Connect with Taskin Ahmed
+              Connect with Anonto Rishi
             </h3>
             <p className="text-sm text-gray-400 mt-2 max-w-xl mx-auto">
               Want to discuss World Cup prospects, collaborate on a sports lifestyle gig, or just say hello? Write your message right below.
@@ -1877,7 +1877,7 @@ export default function App() {
           <div className="space-y-4">
             <div className="flex items-center gap-1.5">
               <Trophy size={16} className="text-[#FEDD00]" />
-              <h4 className="font-display font-black text-lg text-white tracking-tight uppercase">Taskin Ahmed </h4>
+              <h4 className="font-display font-black text-lg text-white tracking-tight uppercase">Anonto Rishi</h4>
             </div>
             <p className="text-xs text-gray-400 leading-relaxed">
               Leading the digital frontier of Brazil football support networks. This interactive sports portal is designed and code-crafted with absolute precision as a professional showcase.
@@ -1973,7 +1973,7 @@ export default function App() {
         {/* Bottom Rights Bar */}
         <div className="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
           <div className="text-xs text-gray-500">
-            <p>© 2026 Taskin Ahmed. All Rights Reserved.</p>
+            <p>© 2026 Anonto Rishi. All Rights Reserved.</p>
           </div>
           <div className="text-xs text-gray-500">
             <p className="text-[10px] opacity-85 uppercase tracking-widest font-mono">

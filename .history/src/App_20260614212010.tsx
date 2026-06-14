@@ -101,7 +101,6 @@ const FORMATIONS_DATA = {
 export default function App() {
   // Navigation & UI State
   const [activeSection, setActiveSection] = useState("hero");
-  const hasAnimatedGlobal = useRef(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [customCursor, setCustomCursor] = useState(true);
   const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
@@ -225,44 +224,28 @@ export default function App() {
     setBallTouchCount((prev) => prev + 1);
   };
 
-  // FIXED REALTIME STAT COUNTER COMPONENT WITH TRIGGER LOCKS
+  // Pre-configured custom countup hook representation
   function StatCounter({ endValue, title, icon: Icon, delay = 0.1 }: { endValue: number; title: string; icon: any; delay?: number }) {
     const [count, setCount] = useState(0);
     const ref = useRef<HTMLDivElement | null>(null);
-    const hasAnimated = useRef(false); 
 
     useEffect(() => {
+      let isAnimated = false;
       const observer = new IntersectionObserver(
         (entries) => {
-          if (entries[0].isIntersecting && !hasAnimated.current) {
-            hasAnimated.current = true; // অ্যানিমেশন একবার শুরু হলে লক করে দেবে
-            
-            let startTime: number | null = null;
-            const duration = 2000; // ২ সেকেন্ডের মসৃণ অ্যানিমেশন
-
-            const stepAnimation = (timestamp: number) => {
-              if (!startTime) startTime = timestamp;
-              const progress = timestamp - startTime;
-              const progressRatio = Math.min(progress / duration, 1);
-              
-              // Smooth Ease-out গাণিতিক ম্যাপিং 
-              const easeOutQuad = progressRatio * (2 - progressRatio);
-              const currentCount = Math.floor(easeOutQuad * endValue);
-              
-              setCount(currentCount);
-
-              if (progress < duration) {
-                window.requestAnimationFrame(stepAnimation);
-              } else {
-                setCount(endValue); // চূড়ান্ত সংখ্যা নিশ্চিত করার জন্য ফিক্স
+          if (entries[0].isIntersecting && !isAnimated) {
+            isAnimated = true;
+            let start = 0;
+            const duration = 2000; // 2 seconds animation
+            const stepTime = Math.abs(Math.floor(duration / endValue));
+            const timer = setInterval(() => {
+              start += 1;
+              setCount(start);
+              if (start >= endValue) {
+                clearInterval(timer);
+                setCount(endValue);
               }
-            };
-
-            const delayTimeout = setTimeout(() => {
-              window.requestAnimationFrame(stepAnimation);
-            }, delay * 1000);
-
-            return () => clearTimeout(delayTimeout);
+            }, Math.max(stepTime, 20));
           }
         },
         { threshold: 0.1 }
@@ -275,7 +258,7 @@ export default function App() {
       return () => {
         if (ref.current) observer.unobserve(ref.current);
       };
-    }, [endValue, delay]);
+    }, [endValue]);
 
     return (
       <motion.div
@@ -513,9 +496,9 @@ export default function App() {
                 transition={{ delay: 0.2, duration: 0.8 }}
                 className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mt-3 text-lg md:text-xl font-medium text-emerald-300"
               >
-                <span className="flex items-center gap-1.5">Computer Science & Technology <Star size={12} className="text-[#FEDD00] fill-[#FEDD00]" /></span>
+                <span className="flex items-center gap-1.5">Brazil Football Supporter <Star size={12} className="text-[#FEDD00] fill-[#FEDD00]" /></span>
                 <span className="hidden md:inline text-[#FEDD00]">•</span>
-                <span className="text-[#FEDD00]">Tech Enthusiast</span>
+                <span className="text-[#FEDD00]">Football Enthusiast</span>
               </motion.div>
             </div>
 
@@ -1729,7 +1712,7 @@ export default function App() {
               Contact Messenger Hub
             </span>
             <h3 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-white capitalize">
-              Connect with Taskin Ahmed
+              Connect with Anonto Rishi
             </h3>
             <p className="text-sm text-gray-400 mt-2 max-w-xl mx-auto">
               Want to discuss World Cup prospects, collaborate on a sports lifestyle gig, or just say hello? Write your message right below.
@@ -1877,7 +1860,7 @@ export default function App() {
           <div className="space-y-4">
             <div className="flex items-center gap-1.5">
               <Trophy size={16} className="text-[#FEDD00]" />
-              <h4 className="font-display font-black text-lg text-white tracking-tight uppercase">Taskin Ahmed </h4>
+              <h4 className="font-display font-black text-lg text-white tracking-tight uppercase">Anonto Rishi</h4>
             </div>
             <p className="text-xs text-gray-400 leading-relaxed">
               Leading the digital frontier of Brazil football support networks. This interactive sports portal is designed and code-crafted with absolute precision as a professional showcase.
@@ -1930,7 +1913,7 @@ export default function App() {
                 <Mail size={14} className="text-[#009739] shrink-0 mt-0.5" />
                 <div>
                   <p className="font-semibold text-gray-200">Electronic Mail</p>
-                  <p className="text-[11px] font-mono select-all">mdtaskinahmedtasin@gmail.com</p>
+                  <p className="text-[11px] font-mono select-all">talukderor@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -1946,9 +1929,9 @@ export default function App() {
             </p>
             <div className="flex items-center gap-3 pt-2">
               {[
-                { label: "Facebook", icon: Facebook, url: "https://www.facebook.com/share/17ig9nro1H/?mibextid=wwXIfr" },
-                { label: "Instagram", icon: Instagram, url: "https://www.instagram.com/mdtaskinahamedtasin?igsh=MTM5N2xpMTEwM3I0cA%3D%3D&utm_source=qr" },
-                { label: "YouTube", icon: Youtube, url: "https://youtube.com/@mdtaskinahmed3089?si=QUJos5R1oyRt1UUb" },
+                { label: "Facebook", icon: Facebook, url: "https://facebook.com" },
+                { label: "Instagram", icon: Instagram, url: "https://instagram.com" },
+                { label: "YouTube", icon: Youtube, url: "https://youtube.com" },
                 { label: "WhatsApp", icon: MessageCircle, url: "https://wa.me/8801928868741" },
               ].map((soc) => {
                 const IconComp = soc.icon;
@@ -1973,7 +1956,7 @@ export default function App() {
         {/* Bottom Rights Bar */}
         <div className="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
           <div className="text-xs text-gray-500">
-            <p>© 2026 Taskin Ahmed. All Rights Reserved.</p>
+            <p>© 2026 Anonto Rishi. All Rights Reserved.</p>
           </div>
           <div className="text-xs text-gray-500">
             <p className="text-[10px] opacity-85 uppercase tracking-widest font-mono">
